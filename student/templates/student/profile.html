@@ -1,0 +1,177 @@
+{% extends "student/layout.html" %} 
+
+{% block title %} Your profile {%endblock%}
+
+{% block body %}
+<div class="results-heading">Hello, {{user.first_name}}!</div>
+<div class="profile-links">
+    <a class="profile-big" id="profile-enquiries">Your inquiries</a>
+    <a class="profile-big" id="profile-properties">Your properties</a>
+    <a class="profile-big" id="profile-edit">Edit profile</a>
+</div>
+
+
+<div class="profile-links-content" id="enquiries">
+    {% if enquiries %}
+    {% for enquiry in enquiries %}
+    <hr>
+    <a href="{% url 'rental' enquiry.property.id %}" class="result">
+        <div class="result-image">
+            <img src="{{enquiry.property.image1}}" alt="image of the property">
+        </div>
+        <div class="result-content">
+            <div class="small">{{enquiry.property.get_place_display}}</div>
+            <div class="big">{{enquiry.property.get_city_display}} • {{enquiry.property.title}}</div>
+            <hr class="hr-result">
+            <ul class="amenities">
+                {% for amenity in amenities %}
+                {% if amenity.property == enquiry.property %}
+                {% if amenity.wifi == True %}
+                <li class="small">Wifi</li>
+                {% endif %}
+                {% if amenity.washer == True %}
+                <li class="small">Washer</li>
+                {% endif %}
+                {% if amenity.kitchen == True %}
+                <li class="small">Kitchen</li>
+                {% endif %}
+                {% if amenity.bike == True %}
+                <li class="small">Bike Storage</li>
+                {% endif %}
+                {% if amenity.parking == True %}
+                <li class="small">Parking</li>
+                {% endif %}
+                {% endif %}
+                {% endfor %}
+            </ul>
+            <div class="price">
+                <span id="price">${{enquiry.property.price}}</span>
+                <span>/ month</span>
+            </div>
+        </div>
+    </a>
+    <div class="rental-approval" id="{{enquiry.status}}">{{enquiry.status}}</div>
+    {% endfor %}
+    {% else %}
+    <hr>
+    <div>You haven't made any inquiries</div>
+    {% endif %}
+</div>
+
+
+<div class="profile-links-content" id="properties">
+    {% if properties %}
+    {% for property in properties %}
+    <hr>
+    <a href="{% url 'rental' property.id %}" class="result">
+        <div class="result-image">
+            <img src="{{property.image1}}" alt="image of the property">
+        </div>
+        <div class="result-content">
+            <div class="small">{{property.get_place_display}}</div>
+            <div class="big">{{property.get_city_display}} • {{property.title}}</div>
+            <hr class="hr-result">
+            <ul class="amenities">
+                {% for amenity in amenities %}
+                {% if amenity.property == property %}
+                {% if amenity.wifi == True %}
+                <li class="small">Wifi</li>
+                {% endif %}
+                {% if amenity.washer == True %}
+                <li class="small">Washer</li>
+                {% endif %}
+                {% if amenity.kitchen == True %}
+                <li class="small">Kitchen</li>
+                {% endif %}
+                {% if amenity.bike == True %}
+                <li class="small">Bike Storage</li>
+                {% endif %}
+                {% if amenity.parking == True %}
+                <li class="small">Parking</li>
+                {% endif %}
+                {% endif %}
+                {% endfor %}
+            </ul>
+            <div class="price">
+                <span id="price">${{property.price}}</span>
+                <span>/ month</span>
+            </div>
+        </div>
+    </a>
+    {% for booker in bookers %}
+    {% if booker.property == property %}
+    <div class="bookers">
+        <div class="booker-info">
+            <div class="small">{{booker.user.first_name}} {{booker.user.last_name}}</div>
+            <div class="small">{{booker.user.email}} • {{booker.phone}}</div>
+            <div>{{booker.message}}</div>
+        </div>
+        <div class="booker-button">
+            {% if booker.status == 'Pending' %}
+            <button id="Confirmed" data-id="{{booker.id}}" class="Confirmed-{{booker.id}}">Accept</button>
+            <button id="Declined" data-id="{{booker.id}}" class="Declined-{{booker.id}}">Decline</button>
+            <button id="button-finished" data-id="{{booker.id}}" class="Finished-{{booker.id}}"></button>
+            {% else %}
+            <button id="{{booker.status}}" class="button-finished">{{booker.status}}</button>
+            {% endif %}
+        </div>
+    </div>
+    {% endif %}
+    {% endfor %}
+    {% endfor %}
+    {% else %}
+    <hr>
+    <div>You don't have any properties</div>
+    {% endif %}
+</div>
+
+
+<div class="edit-content" id="edit">
+    <hr>
+    <div class="form-group">
+        <label for="username">Username</label>
+        <div class="input-group">
+            <input type="text" name="username" id="username" value="{{user.username}}" disabled>
+        </div>
+    </div>
+
+    <form class="profile-change" >
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="first_name">First name</label>
+            <div class="input-group">
+                <input type="text" name="first_name" id="first_name" value="{{user.first_name}}">
+                <input type="submit" class="change-button" value="Save" id="first-change"></input>
+                <span class="success-edit" id="success-first">First name changed successfully!</span>
+            </div>
+            
+        </div>
+    </form>
+    
+    <form class="profile-change" >
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="last_name">Last name</label>
+            <div class="input-group">
+                <input type="text" name="last_name" id="last_name" value="{{user.last_name}}" >
+                <input type="submit" class="change-button" value="Save" id="last-change"></input>
+                <span class="success-edit" id="success-last">Last name changed successfully!</span>
+            </div>
+        </div>
+    </form>
+
+    <form class="profile-change" >
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="email">Email</label>
+            <div class="input-group">
+                <input type="text" name="email" id="email" value="{{user.email}}" >
+                <input type="submit" class="change-button" value="Save" id="email-change"></input>
+                <span class="success-edit" id="success-email">Email changed successfully!</span>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script src="/static/student/profile.js"></script>
+{% endblock %}
