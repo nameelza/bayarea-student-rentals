@@ -17,18 +17,18 @@ $ cd bayarea-student-rentals
 
 Install the dependencies.
 ```
-$ pip install -r requirements.txt
+$ pip3 install -r requirements.txt
 ```
 
 Apply the migrations.
 ```
-$ python manage.py makemigrations
-$ python manage.py migrate
+$ python3 manage.py makemigrations
+$ python3 manage.py migrate
 ```
 
 You can now run the server.
 ```
-$ python manage.py runserver
+$ python3 manage.py runserver
 ```
 
 ## Features
