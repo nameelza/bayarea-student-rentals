@@ -12,7 +12,7 @@ The project is an AirBnB for students in Bay Area. The difference is that the re
 To get started, you need to clone the repository.
 ```
 $ git clone https://github.com/nameelza/web.git
-$ cd finalproject
+$ cd bayarea-student-rentals
 ```
 
 Install the dependencies.
