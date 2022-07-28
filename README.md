@@ -46,7 +46,7 @@ $ python3 manage.py runserver
 * Edit your profile information
 
 ## Technical details
-The app is built on Django, using JavaScript and SQLite3. The database is stored in the local file system.
+The app is built with Django, JavaScript and SQLite3. The database is stored in the local file system.
 
 ## Distinctiveness and Complexity
 The app is designed on the basis of the requirements of the project. It uses Django, including four models, on the backend and Javascript on the frontend. The app is also designed to be mobile responsive, using css media queries.
