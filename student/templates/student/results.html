@@ -4,7 +4,11 @@
 <div class="results-list">
   {% for property in properties %}
   <hr />
+  {% if user.is_authenticated %}
   <a href="{% url 'rental' property.id %}" class="result">
+  {% else %}
+  <a href="{% url 'login' %}" class="result">
+  {% endif %}
     <div class="result-image">
       <img src="{{property.image1}}" alt="image of the property" />
     </div>

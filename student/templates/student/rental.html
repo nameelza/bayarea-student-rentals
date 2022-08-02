@@ -14,27 +14,43 @@ bathroom {%endblock%} {% block body %}
   </div>
   <div class="images-column">
     <div class="image-single">
-      <img src="{{property.image1}}" alt="{{property.title}}" id="smallImage" />
+      <img
+        src="{{property.image1}}"
+        alt="{{property.title}}"
+        classname="smallImage"
+      />
     </div>
     <div class="image-single">
-      <img src="{{property.image2}}" alt="{{property.title}}" id="smallImage" />
+      <img
+        src="{{property.image2}}"
+        alt="{{property.title}}"
+        classname="smallImage"
+      />
     </div>
     <div class="image-single">
-      <img src="{{property.image3}}" alt="{{property.title}}" id="smallImage" />
+      <img
+        src="{{property.image3}}"
+        alt="{{property.title}}"
+        classname="smallImage"
+      />
     </div>
     <div class="image-single">
-      <img src="{{property.image4}}" alt="{{property.title}}" id="smallImage" />
+      <img
+        src="{{property.image4}}"
+        alt="{{property.title}}"
+        classname="smallImage"
+      />
     </div>
   </div>
 </div>
 <div class="rental-content">
   <div class="rental-content-info">
-    <div class="big" id="rental-big">Property details</div>
+    <div class="big" classname="rental-big">Property details</div>
     <div class="info">{{property.description}}</div>
-    <div class="big" id="rental-big">Address</div>
+    <div class="big" classname="rental-big">Address</div>
     <span class="small">{{property.address}}</span>
     <hr />
-    <div class="big" id="rental-big">Amenities</div>
+    <div class="big" classname="rental-big">Amenities</div>
     <ul class="amenities">
       {% if amenities.wifi == True %}
       <li class="small">Wifi</li>
@@ -48,7 +64,7 @@ bathroom {%endblock%} {% block body %}
       <li class="small">Parking</li>
       {% endif %}
     </ul>
-    <div class="big" id="rental-big">Security & Safety</div>
+    <div class="big" classname="rental-big">Security & Safety</div>
     {% if amenities.cctv == True %}
     <div id="included">
       <ul class="amenities">
@@ -56,81 +72,81 @@ bathroom {%endblock%} {% block body %}
       </ul>
     </div>
     {% else %}
-    <div id="notIncluded">
+    <div classname="notIncluded">
       <ul class="amenities">
         <li class="small">CCTV / Surveillance Cameras</li>
       </ul>
     </div>
     {% endif %} {% if amenities.gate == True %}
-    <div id="included">
+    <div classname="included">
       <ul class="amenities">
         <li class="small">Controlled Access Gate</li>
       </ul>
     </div>
     {% else %}
-    <div id="notIncluded">
+    <div classname="notIncluded">
       <ul class="amenities">
         <li class="small">Controlled Access Gate</li>
       </ul>
     </div>
     {% endif %}
-    <div class="big" id="rental-big">Bills included</div>
+    <div class="big" classname="rental-big">Bills included</div>
     {% if amenities.wifi_bill == True %}
-    <div id="included">
+    <div classname="included">
       <ul class="amenities">
         <li class="small">Wifi</li>
       </ul>
     </div>
     {% else %}
-    <div id="notIncluded">
+    <div classname="notIncluded">
       <ul class="amenities">
         <li class="small">Wifi</li>
       </ul>
     </div>
     {% endif %} {% if amenities.water_bill == True %}
-    <div id="included">
+    <div classname="included">
       <ul class="amenities">
         <li class="small">Water</li>
       </ul>
     </div>
     {% else %}
-    <div id="notIncluded">
+    <div classname="notIncluded">
       <ul class="amenities">
         <li class="small">Water</li>
       </ul>
     </div>
     {% endif %} {% if amenities.electricity_bill == True %}
-    <div id="included">
+    <div classname="included">
       <ul class="amenities">
         <li class="small">Electricity</li>
       </ul>
     </div>
     {% else %}
-    <div id="notIncluded">
+    <div classname="notIncluded">
       <ul class="amenities">
         <li class="small">Electricity</li>
       </ul>
     </div>
     {% endif %} {% if amenities.gas_bill == True %}
-    <div id="included">
+    <div classname="included">
       <ul class="amenities">
         <li class="small">Gas</li>
       </ul>
     </div>
     {% else %}
-    <div id="notIncluded">
+    <div classname="notIncluded">
       <ul class="amenities">
         <li class="small">Gas</li>
       </ul>
     </div>
     {% endif %} {% if amenities.heating_bill == True %}
-    <div id="included">
+    <div classname="included">
       <ul class="amenities">
         <li class="small">Heating</li>
       </ul>
     </div>
     {% else %}
-    <div id="notIncluded">
+    <div classname="notIncluded">
       <ul class="amenities">
         <li class="small">Heating</li>
       </ul>
